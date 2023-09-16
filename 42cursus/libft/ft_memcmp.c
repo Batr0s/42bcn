@@ -1,36 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/12 17:03:54 by acandela          #+#    #+#             */
-/*   Updated: 2023/09/16 11:42:35 by acandela         ###   ########.fr       */
+/*   Created: 2023/09/16 13:13:28 by acandela          #+#    #+#             */
+/*   Updated: 2023/09/16 13:51:42 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-/* Copies 'src' to 'dest' and guarantee null termination.
-Returns the length of the string they tried to create */
-size_t	ft_strlcpy(char *dest, const char *src, size_t dstsize)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int		i;
-	size_t	j;
+	size_t			i;
+	unsigned char	*us1;
+	unsigned char	*us2;
 
+	us1 = (unsigned char *)s1;
+	us2 = (unsigned char *)s2;
 	i = 0;
-	j = 0;
-	while (src[i])
+	if (n == 0)
+		return (0);
+	while ((i + 1 < n) && us1[i] == us2[i])
 		i++;
-	if (dstsize == 0)
-		return (i);
-	while ((dstsize > j + 1) && src[j])
-	{
-		dest[j] = src[j];
-		j++;
-	}
-	dest[j] = 0;
-	return (i);
+	return (us1[i] - us2[i]);
 }

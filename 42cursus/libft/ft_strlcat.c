@@ -6,11 +6,12 @@
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 17:42:17 by acandela          #+#    #+#             */
-/*   Updated: 2023/09/14 16:53:30 by acandela         ###   ########.fr       */
+/*   Updated: 2023/09/16 10:46:45 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
 /*
 1. Si dstsize > lendest --> hay espacio dentro de dest. Devuelve el tamaño
@@ -21,12 +22,12 @@ del string que intenta crear (lendest + lensrc).
 Bucle: lendest + 1 para tener en cuenta el '\0' de la ultima posición.
 Ya que en un array de tamaño 5, la última posición sera la 4.
 */
-unsigned int	ft_strlcat(char *dest, char *src, unsigned int dstsize)
+size_t	ft_strlcat(char *dest, char *src, size_t dstsize)
 {
-	unsigned int	i;
-	unsigned int	lensrc;
-	unsigned int	lendest;
-	unsigned int	result;
+	int		i;
+	size_t	lensrc;
+	size_t	lendest;
+	size_t	result;
 
 	lensrc = ft_strlen(src);
 	lendest = ft_strlen(dest);
