@@ -6,7 +6,7 @@
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 17:30:18 by acandela          #+#    #+#             */
-/*   Updated: 2023/09/16 12:47:31 by acandela         ###   ########.fr       */
+/*   Updated: 2023/09/19 17:39:16 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*ft_strrchr(const char *s, int c)
 	}
 	if (coin)
 		return ((char *)s + numcoin);
-	else if (s[i] == 0 && c == 0)
+	else if (s[i] == 0 && (char)c == '\0')
 		return ((char *)s + i);
 	else
 		return (0);
