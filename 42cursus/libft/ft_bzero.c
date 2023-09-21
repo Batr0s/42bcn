@@ -6,31 +6,23 @@
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 15:35:36 by acandela          #+#    #+#             */
-/*   Updated: 2023/09/16 11:40:31 by acandela         ###   ########.fr       */
+/*   Updated: 2023/09/21 18:55:27 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
-
-/* 
-Rellena con '\0', 'n' veces la seccion de memoria 's'.
+#include <string.h>
+/*
+Rellena 'n' veces con BYTES 0 el string 's'.
 */
 void	ft_bzero(void *s, size_t n)
 {
 	size_t	i;
-	char	*str;
 
-	str = s;
 	i = 0;
-	if (n)
-	{
-		while (i < n)
-		{
-			str[i] = '\0';
-			i++;
-		}
-	}
+	while (i < n)
+		((char *)s)[i++] = 0;
 }
 /*
 int main()
