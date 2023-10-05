@@ -6,17 +6,18 @@
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 17:13:08 by acandela          #+#    #+#             */
-/*   Updated: 2023/09/19 17:40:18 by acandela         ###   ########.fr       */
+/*   Updated: 2023/10/04 17:23:19 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /*
-Devuelve un puntero a la posicion en la que encuentra la primera coincidencia
+Devuelve un puntero a la posicion en la que encuentra la PRIMERA coincidencia
 con el int 'c' pasado a char.
 Si no encuentra coincidencias devuelve null.
 */
+
 char	*ft_strchr(const char *s, int c)
 {
 	while (*s != 0)
@@ -28,5 +29,5 @@ char	*ft_strchr(const char *s, int c)
 	if ((*s == '\0') && ((char)c == '\0'))
 		return ((char *)s);
 	else
-		return ((char *)'\0');
+		return (0);
 }

@@ -6,19 +6,19 @@
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 18:15:21 by acandela          #+#    #+#             */
-/*   Updated: 2023/10/02 18:53:10 by acandela         ###   ########.fr       */
+/*   Updated: 2023/10/05 16:28:23 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <unistd.h>
 
-void	ft_putchar(char c, int fd)
+static void	ft_putchar(char c, int fd)
 {
 	write(fd, &c, 1);
 }
 
-void	patito(int fd)
+static void	patito(int fd)
 {
 	write(fd, "-2147483648", 11);
 }

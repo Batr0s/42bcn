@@ -6,7 +6,7 @@
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 17:30:18 by acandela          #+#    #+#             */
-/*   Updated: 2023/09/19 17:39:16 by acandela         ###   ########.fr       */
+/*   Updated: 2023/10/04 18:19:07 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,26 @@ Devuelve un puntero a la posicion en la que encuentra la ULTIMA coincidencia
  con el int 'c'. Si no encuentra coincidencias devuelve null.
  El int 'c' puede ser '\0'.
 */
+
 char	*ft_strrchr(const char *s, int c)
 {
 	int	i;
-	int	numcoin;
-	int	coin;
 
-	coin = 0;
-	numcoin = 0;
-	i = 0;
-	while (s[i])
+	i = ft_strlen(s);
+	while (i >= 0)
 	{
 		if (s[i] == (char)c)
-		{
-			coin = 1;
-			numcoin = i;
-		}
-		i++;
+			return ((char *)s + i);
+		i--;
 	}
-	if (coin)
-		return ((char *)s + numcoin);
-	else if (s[i] == 0 && (char)c == '\0')
-		return ((char *)s + i);
-	else
-		return (0);
+	return (0);
 }
+/*
+#include <stdio.h>
+int main(void)
+{
+	char s[] = "lorem ipsum ";
+	char *result = ft_strrchr(s, 'm');
+	printf("%s\n", result);
+}
+*/

@@ -6,12 +6,12 @@
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 17:05:31 by acandela          #+#    #+#             */
-/*   Updated: 2023/09/20 18:23:31 by acandela         ###   ########.fr       */
+/*   Updated: 2023/10/04 13:29:01 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
+
 /*
 I used function ft_strlen + 1 to take into consideration the \0 at the end of s1
 We cannot use sizeof(s1) because it takes the size of a pointer (8) instead of
@@ -35,13 +35,14 @@ char	*ft_strdup(const char *s1)
 	return (s2);
 }
 /*
+#include <stdio.h>
+#include <string.h>
 int	main(void)
 {
-	char	*s1_dup;
-
 	char s1[] = "lorem ipsum dolor sit amet";
-	s1_dup = ft_strdup(s1);
+	char *s1_dup = ft_strdup(s1);
+	char *s1_dup = strdup(s1);
     printf("%s\n", s1_dup);
-	//printf("%zu", sizeof(s1));
+	printf("%zu", sizeof(s1));
 }
 */

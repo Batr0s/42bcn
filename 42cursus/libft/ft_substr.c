@@ -6,13 +6,14 @@
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 17:48:33 by acandela          #+#    #+#             */
-/*   Updated: 2023/09/22 16:58:10 by acandela         ###   ########.fr       */
+/*   Updated: 2023/10/04 13:30:30 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
+
 /*
+Creates a substring of 's' delimiting it's size using 'start' and 'len'.
 If 'start' its higher than the length of 's', then 'start' = length of 's'.
 If value of 'len' it's higher than the value of 'lenstr', then len = lenstr.
 If malloc returns NULL then ft_substr return NULL.
@@ -25,6 +26,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	lenstr;
 
 	i = 0;
+	if (s == NULL)
+		return (NULL);
 	if (start > ft_strlen(s))
 		start = ft_strlen(s);
 	lenstr = ft_strlen(s + start);
@@ -39,6 +42,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (substr);
 }
 /*
+#include <stdio.h>
 int	main(void)
 {
 	char  s[] = "lorem ipsum dolor sit amet";

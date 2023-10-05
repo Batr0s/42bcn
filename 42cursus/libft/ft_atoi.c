@@ -6,7 +6,7 @@
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 18:32:32 by acandela          #+#    #+#             */
-/*   Updated: 2023/09/16 19:22:19 by acandela         ###   ########.fr       */
+/*   Updated: 2023/10/03 12:57:29 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,18 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	while (ft_isdigit(str[i]))
-	{
-		result = result * 10 + str[i] - 48;
-		i++;
-	}
+		result = result * 10 + str[i++] - 48;
 	if (result && resta)
 		return (-result);
 	else if (result)
 		return (result);
 	return (0);
 }
+/*
+#include <stdio.h>
+int main(void)
+{
+	char str[] = "  1	-2147s48364i8";
+	int result = ft_atoi(str);
+	printf("%d\n", result);
+}*/

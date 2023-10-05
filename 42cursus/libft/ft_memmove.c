@@ -6,18 +6,18 @@
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 16:50:33 by acandela          #+#    #+#             */
-/*   Updated: 2023/09/16 10:39:12 by acandela         ###   ########.fr       */
+/*   Updated: 2023/10/04 17:16:33 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
 /*
 Copies 'n' bytes from 'src' to 'dst' but with good management of the overlaping.
 It ensures that the bytes will be copied even with overlaping.
 Also if 'src' and 'dst' are both 0 it returns 'dst'
 */
+
 void	*ft_memmove(void *dst, const void *src, size_t n)
 {
 	size_t	i;
@@ -34,3 +34,15 @@ void	*ft_memmove(void *dst, const void *src, size_t n)
 		return (ft_memcpy(dst, src, n));
 	return (dst);
 }
+/*
+#include <stdio.h>
+int main(void)
+{
+	char str[] = "Hello, World!";
+    char *src = str + 7;  // Puntero a la posición 'W' en "World!"
+    char *dst = str + 13;
+	ft_memmove(dst, src, 7);
+	printf("src: %s\n", src);
+	printf("dst: %s\n", dst);
+}
+*/

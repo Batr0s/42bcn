@@ -6,14 +6,18 @@
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 18:25:39 by acandela          #+#    #+#             */
-/*   Updated: 2023/09/29 19:10:01 by acandela         ###   ########.fr       */
+/*   Updated: 2023/10/05 16:28:00 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 
-int	ft_countdigits(int n)
+/*
+itoa function recieves an int and creates a string with the digits of that int
+it can manage negative numbers and the max and min number of the int variable.
+*/
+static int	ft_countdigits(long n)
 {
 	int	digits;
 
@@ -30,30 +34,18 @@ int	ft_countdigits(int n)
 	return (digits);
 }
 
-char	*ft_isitoa(char *itoa, int i, int n, int sign)
+static char	*ft_isitoa(char *itoa, int size, long cast, int sign)
 {
-	while (i > 0)
+	itoa[size] = '\0';
+	while (size > 0)
 	{
-		if (i == 1 && sign)
-			itoa[--i] = '-';
+		if (size == 1 && sign)
+			itoa[--size] = '-';
 		else
-			itoa[--i] = (n % 10) + 48;
-		n /= 10;
+			itoa[--size] = (cast % 10) + 48;
+		cast /= 10;
 	}
 	return (itoa);
-}
-
-int	ft_ismax(int n)
-{
-	int	max;
-
-	max = 0;
-	if (n == -2147483648)
-	{
-		n = (n + 1) * -1;
-		max = 1;
-	}
-	return (max);
 }
 
 char	*ft_itoa(int n)
@@ -61,28 +53,25 @@ char	*ft_itoa(int n)
 	int		size;
 	int		sign;
 	char	*itoa;
-	int		max;
+	long	cast;
 
+	cast = (long)n;
 	sign = 0;
-	if (n < 0)
+	if (cast < 0)
 	{
-		n = n * (-1);
+		cast *= -1;
 		sign = 1;
 	}
-	max = ft_ismax(n);
-	if (max)
-		n = (n + 1) * -1;
-	size = ft_countdigits(n) + sign;
+	size = ft_countdigits(cast) + sign;
 	itoa = malloc(size + 1);
 	if (itoa == NULL)
 		return (NULL);
-	itoa = ft_isitoa(itoa, size, n, sign);
-	if (max)
-		itoa[10] = '8';
-	itoa[size] = '\0';
+	itoa = ft_isitoa(itoa, size, cast, sign);
 	return (itoa);
 }
 /*
+#include <stdio.h>
+
 int	main(void)
 {
 	int		n;

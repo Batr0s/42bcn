@@ -6,12 +6,11 @@
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:14:35 by acandela          #+#    #+#             */
-/*   Updated: 2023/10/02 17:26:46 by acandela         ###   ########.fr       */
+/*   Updated: 2023/10/04 13:30:54 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
@@ -25,7 +24,7 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 	}
 	s[i] = '\0';
 }
-/*
+/*#include <stdio.h>
 void	mifuncion(unsigned int num, char *ptr)
 {
 	*ptr = '5';

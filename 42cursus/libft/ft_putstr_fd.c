@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/11 12:46:08 by acandela          #+#    #+#             */
-/*   Updated: 2023/10/04 17:19:00 by acandela         ###   ########.fr       */
+/*   Created: 2023/10/02 18:03:24 by acandela          #+#    #+#             */
+/*   Updated: 2023/10/04 13:21:48 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <unistd.h>
 
-/* 
-Copia el caracter 'c', 'n' veces dentro de 'str'
-*/
-
-void	*ft_memset(void *str, int c, size_t n)
+void	ft_putstr_fd(char *s, int fd)
 {
-	size_t			i;
-	unsigned char	*strc;
+	int	i;
 
 	i = 0;
-	strc = str;
-	while (i < n)
-		strc[i++] = (unsigned char)c;
-	return (str);
+	while (s[i] != 0)
+	{
+		write(fd, &s[i], 1);
+		i++;
+	}
 }
 /*
-#include <stdio.h>
-int main(void)
+int	main(void)
 {
 	char str[] = "hola";
-	printf("%s\n", ft_memset(str, '3', 5));
+	ft_putstr_fd(str, 1);
 }
 */

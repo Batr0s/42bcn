@@ -6,12 +6,11 @@
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 18:18:18 by acandela          #+#    #+#             */
-/*   Updated: 2023/09/16 11:43:24 by acandela         ###   ########.fr       */
+/*   Updated: 2023/10/04 18:00:20 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
 /*
 Compara los strings s1 y s2 terminados en '\0' 'n' caracteres.
@@ -21,6 +20,7 @@ Return:
 Si encuentra una diferencia entre s1 y s2 o se han comparado 'n' caracteres
 sale del bucle y retorna la diferencia entre s1 y s2.
 */
+
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	i;
@@ -32,3 +32,13 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		i++;
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
+/*
+#include <stdio.h>
+int main(void)
+{
+	char s1[] = "aaa";
+	char s2[] = "aab";
+	int result = ft_strncmp(s1, s2, 3);
+	printf("%d\n", result);
+}
+*/

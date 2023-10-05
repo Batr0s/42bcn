@@ -6,50 +6,34 @@
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 18:25:22 by acandela          #+#    #+#             */
-/*   Updated: 2023/09/28 18:08:44 by acandela         ###   ########.fr       */
+/*   Updated: 2023/10/05 16:28:50 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 
-/*
-ft_cntwds counts the number of words inside 's' taking into account
-the separator and the posibility that the pointer 's' could be an empty string
-or be a pointer to NULL.
-
-ft_free uses free function in every char * inside the char ** and also with
-the char **. And it's used below the malloc(char **) and below the ft_substr.
-
-ft_itsplit iterates 's' pointer and if it finds a separator or the end of the
-string 's', then uses ft_substr function to create an char * with the same size
-of the word finishing in '\0'. When finds a separator or null 'start' updates
-its value.
-*/
-
-int	ft_cntwds(char const *s, char c)
+static int	ft_cntwds(char const *s, char c)
 {
 	int	i;
 	int	num_words;
 
 	i = 0;
 	num_words = 0;
-	if (s == NULL || *s == '\0')
-		return (0);
 	while (s[i])
 	{
 		if (i && s[i] == c && s[i - 1] != c)
 			num_words++;
 		i++;
 	}
-	if (s[i - 1] != c && (i > 0))
+	if ((i > 0) && s[i - 1] != c)
 		num_words++;
 	return (num_words);
 }
 
-void	ft_free(char **split, size_t numw)
+static void	ft_free(char **split, int numw)
 {
-	while (numw > 0)
+	while (numw >= 0)
 	{
 		free(split[numw]);
 		numw--;
@@ -57,46 +41,61 @@ void	ft_free(char **split, size_t numw)
 	free(split);
 }
 
-char	**ft_itsplit(char **split, char const *s, char c)
+static char	*ft_splitstr(const char *s, int start, int end)
+{
+	char	*str;
+	int		i;
+
+	i = 0;
+	str = malloc(end + 1);
+	if (str == NULL)
+		return (NULL);
+	while (i < end)
+		str[i++] = s[start++];
+	str[i] = '\0';
+	return (str);
+}
+
+static char	**ft_itsplit(char **split, char const *s, char c)
 {
 	size_t	start;
-	size_t	i;
-	size_t	numw;
+	size_t	end;
+	int		numw;
 
 	start = 0;
-	i = 0;
 	numw = 0;
-	while (i < ft_strlen(s) + 1)
+	while (numw != ft_cntwds(s, c))
 	{
-		if (s[i] == c || s[i] == '\0')
+		while (s[start] == c)
+			start++;
+		end = 0;
+		while (s[start + end] && s[start + end] != c)
+			end++;
+		split[numw] = ft_splitstr(s, start, end);
+		if (split[numw] == NULL)
 		{
-			if (i > start)
-			{
-				split[numw++] = ft_substr(s, start, i - start);
-				if (split[numw - 1] == NULL)
-				{
-					ft_free(split, numw - 1);
-					return (NULL);
-				}
-			}
-			start = i + 1;
+			ft_free(split, numw);
+			return (NULL);
 		}
-		i++;
+		start += end;
+		numw++;
 	}
+	split[ft_cntwds(s, c)] = NULL;
 	return (split);
 }
 
 char	**ft_split(char const *s, char c)
 {
 	char	**split;
-	int		numwords;
+	int		maxwords;
 
-	numwords = ft_cntwds(s, c);
-	split = malloc(sizeof(char *) * (numwords + 1));
+	if (s == NULL)
+		return (NULL);
+	maxwords = ft_cntwds(s, c);
+	split = malloc(sizeof(char *) * (maxwords + 1));
 	if (split == NULL)
 		return (NULL);
 	split = ft_itsplit(split, s, c);
-	split[numwords] = 0;
 	return (split);
 }
 /*
@@ -104,7 +103,7 @@ int	main(void)
 {
 	char	**string;
 
-	string = ft_split("", ' ');
+	string = ft_split("  hola que ", ' ');
 	printf("%s\n", string[0]);
 	printf("%s\n", string[1]);
 	printf("%s\n", string[2]);
