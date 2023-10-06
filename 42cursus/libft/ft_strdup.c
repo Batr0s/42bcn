@@ -6,7 +6,7 @@
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 17:05:31 by acandela          #+#    #+#             */
-/*   Updated: 2023/10/04 13:29:01 by acandela         ###   ########.fr       */
+/*   Updated: 2023/10/06 11:24:03 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ I used function ft_strlen + 1 to take into consideration the \0 at the end of s1
 We cannot use sizeof(s1) because it takes the size of a pointer (8) instead of
 the size of the string.
 */
+
 char	*ft_strdup(const char *s1)
 {
 	char	*s2;
