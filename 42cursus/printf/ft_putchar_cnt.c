@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_putchar_cnt.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/08 13:02:15 by acandela          #+#    #+#             */
-/*   Updated: 2023/10/10 13:25:35 by acandela         ###   ########.fr       */
+/*   Created: 2023/10/10 16:36:12 by acandela          #+#    #+#             */
+/*   Updated: 2023/10/10 18:26:53 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
-# include <stdlib.h>
+#include "libftprintf.h"
+#include <unistd.h>
 
-char	*ft_itoa(int n);
-
-#endif
+int	ft_putchar_cnt(char c)
+{
+	write(1, &c, 1);
+	return (1);
+}

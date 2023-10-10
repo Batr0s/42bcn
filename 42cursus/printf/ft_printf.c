@@ -6,68 +6,59 @@
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:52:32 by acandela          #+#    #+#             */
-/*   Updated: 2023/10/10 13:37:32 by acandela         ###   ########.fr       */
+/*   Updated: 2023/10/10 18:33:24 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libftprintf.h"
 #include <stdarg.h>
 #include <stdio.h>
 #include <unistd.h>
 
-static void	ft_putchar(char c)
+static int	ft_printarg(va_list vargs, char type)
 {
-	write(1, &c, 1);
-}
-
-static void	ft_printarg(va_list vargs, char type)
-{
-    char *str;
-    
 	if (type == 'c')
-		ft_putchar(va_arg(vargs, int));
+		return (ft_putchar_cnt(va_arg(vargs, int)));
 	else if (type == 'd')
-		ft_putchar(va_arg(vargs, int) + 48);
+		return (ft_itoa_cnt(va_arg(vargs, int)));
 	else if (type == 's')
-	{
-	str = va_arg(vargs, char *);
-		while (*str != '\0')
-		{
-			ft_putchar(*str);
-			str++;
-		}
-	}
+		return (ft_putstr_cnt(va_arg(vargs, char *)));
+	return (0);
 }
 
-void	ft_printf(char *str, ...)
+int ft_printf(char const *str, ...)
 {
 	va_list	vargs;
 	int		i;
 	int		type;
+	int		size;
 
 	i = 0;
+	size = 0;
 	va_start(vargs, str);
 	while (str[i] != '\0')
 	{
-		type = '?';
 		if (str[i] == '%')
 		{
-            i++;
-            type = str[i];
-            ft_printarg(vargs, type);
+			type = str[++i];
+			size += ft_printarg(vargs, type);
 		}
 		else
+		{
+			size++;
 			write(1, &str[i], 1);
+		}
 		i++;
 	}
 	va_end(vargs);
+	return (size);
 }
 
-// int	main(void)
-// {
-// 	char x[] = "hola";
-// 	int y = -2147483648;
-
-// 	ft_printf("hola 20 %s\n %d %c\n", "que tal", 55, 'a');
-// 	printf("hola 20 %s\n %d %c", "que tal", y, 'a');
-// }
+int	main(void)
+{
+	// ft_printf("hola %d %c %s\n", 24568, 'M', "weyy");
+	int result = ft_printf("hola %dfd%c \n", 356, 'M');
+	printf("Return: %d\n", result);
+	result = printf("hola %dfd%c \n", 356, 'M');
+	printf("Return: %d\n", result);
+}
