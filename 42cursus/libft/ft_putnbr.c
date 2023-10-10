@@ -6,7 +6,7 @@
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 16:33:26 by acandela          #+#    #+#             */
-/*   Updated: 2023/10/10 16:38:40 by acandela         ###   ########.fr       */
+/*   Updated: 2023/10/10 16:48:48 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,9 @@ void	ft_putnbr(int n)
 			ft_putchar(n + 48);
 	}
 }
-
+/*
 int	main(void)
 {
 	ft_putnbr(-2147483648);
 }
+*/
