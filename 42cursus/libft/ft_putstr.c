@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acandela <acandela@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/02 18:03:24 by acandela          #+#    #+#             */
-/*   Updated: 2023/10/10 17:19:01 by acandela         ###   ########.fr       */
+/*   Created: 2023/10/10 17:13:07 by acandela          #+#    #+#             */
+/*   Updated: 2023/10/10 17:16:13 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <unistd.h>
 
-void	ft_putstr_fd(char *s, int fd)
+void	ft_putstr(char *s)
 {
-	int	i;
+	int i;
 
 	i = 0;
-	while (s[i] != 0)
+	while (s[i] != '\0')
 	{
-		write(fd, &s[i], 1);
+		write(1, &s[i], 1);
 		i++;
 	}
 }
-/*
-int	main(void)
-{
-	char str[] = "hola";
-	ft_putstr_fd(str, 1);
-}
-*/
+
