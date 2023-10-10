@@ -1,50 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/02 18:15:21 by acandela          #+#    #+#             */
-/*   Updated: 2023/10/10 16:41:30 by acandela         ###   ########.fr       */
+/*   Created: 2023/10/10 16:33:26 by acandela          #+#    #+#             */
+/*   Updated: 2023/10/10 16:38:40 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <unistd.h>
 
-
-static void	patito(int fd)
+static void	patito(void)
 {
-	write(fd, "-2147483648", 11);
+	write(1, "-2147483648", 11);
 }
 
-void	ft_putnbr_fd(int n, int fd)
+void	ft_putnbr(int n)
 {
 	int	i;
 
 	if (n == -2147483648)
-		patito(fd);
+		patito();
 	else
 	{
 		if (n < 0)
 		{
 			n = -n;
-			ft_putchar_fd('-', fd);
+			ft_putchar('-');
 		}
 		i = 0;
 		if (n >= 10)
 		{
-			ft_putnbr_fd(n / 10, fd);
-			ft_putnbr_fd(n % 10, fd);
+			ft_putnbr(n / 10);
+			ft_putnbr(n % 10);
 		}
 		else if (n < 10)
-			ft_putchar_fd(n + 48, fd);
+			ft_putchar(n + 48);
 	}
 }
-/*
+
 int	main(void)
 {
-	int num = -987441;
-	ft_putnbr_fd(-2147483648, 4);
-}*/
+	ft_putnbr(-2147483648);
+}
