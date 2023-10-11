@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_itoa_cnt_u.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 17:44:33 by acandela          #+#    #+#             */
-/*   Updated: 2023/10/10 18:29:22 by acandela         ###   ########.fr       */
+/*   Updated: 2023/10/11 12:45:10 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,38 +34,50 @@ static int	ft_countdigits(long n)
 	return (digits);
 }
 
-static char	*ft_isitoa(char *itoa, int size, long cast, int sign)
+static char	*ft_isitoa(char *itoa, int size, long n)
 {
 	itoa[size] = '\0';
 	while (size > 0)
 	{
-		if (size == 1 && sign)
-			itoa[--size] = '-';
-		else
-			itoa[--size] = (cast % 10) + 48;
-		cast /= 10;
+		itoa[--size] = (n % 10) + 48;
+		n /= 10;
 	}
 	return (itoa);
 }
 
-char	*ft_itoa(int n)
+static int ft_itoa_cnt_long(long n)
 {
 	int		size;
-	int		sign;
 	char	*itoa;
-	long	cast;
 
-	cast = (long)n;
-	sign = 0;
-	if (cast < 0)
-	{
-		cast *= -1;
-		sign = 1;
-	}
-	size = ft_countdigits(cast) + sign;
+	size = ft_countdigits(n);
 	itoa = malloc(size + 1);
 	if (itoa == NULL)
-		return (NULL);
-	itoa = ft_isitoa(itoa, size, cast, sign);
-	return (itoa);
+		return (ft_putstr_cnt(NULL));
+	itoa = ft_isitoa(itoa, size, n);
+	return (ft_putstr_cnt(itoa));
 }
+int ft_itoa_cnt_u(int n)
+{
+	long cast;
+	long max_uint;
+
+	max_uint = 4294967295;
+	cast = (long)n;
+	if (cast < 0)
+	{
+		cast = -cast;
+		return(ft_itoa_cnt_long(max_uint - cast + 1));
+	}
+	return(ft_itoa_cnt_long(cast));
+}
+/*
+int main(void)
+{
+	int n;
+
+	n = -1;
+	int result = ft_itoa_cnt_u(n);
+	ft_printf("\n%d\n", result);
+}
+*/

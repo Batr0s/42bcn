@@ -6,12 +6,14 @@
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 16:36:12 by acandela          #+#    #+#             */
-/*   Updated: 2023/10/10 18:26:53 by acandela         ###   ########.fr       */
+/*   Updated: 2023/10/11 13:18:32 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 #include <unistd.h>
+
+#include <stdio.h>
 
 int	ft_putchar_cnt(char c)
 {
