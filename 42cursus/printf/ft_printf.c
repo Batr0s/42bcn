@@ -6,7 +6,7 @@
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:52:32 by acandela          #+#    #+#             */
-/*   Updated: 2023/10/11 13:32:22 by acandela         ###   ########.fr       */
+/*   Updated: 2023/10/11 19:04:11 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,25 @@
 static int	ft_printarg(va_list vargs, char type)
 {
 	if (type == 'c')
-		return (ft_putchar_cnt(va_arg(vargs, int)));
+		return (ft_putchar_print(va_arg(vargs, int)));
 	else if (type == '%')
-		return (ft_putchar_cnt('%'));
+		return (ft_putchar_print('%'));
 	else if (type == 's')
-		return (ft_putstr_cnt(va_arg(vargs, char *)));
+		return (ft_putstr_print(va_arg(vargs, char *)));
 	else if (type == 'd' || type == 'i')
-		return (ft_itoa_cnt(va_arg(vargs, int)));
+		return (ft_itoa_print(va_arg(vargs, int)));
 	else if (type == 'u')
-		return (ft_itoa_cnt_u(va_arg(vargs, unsigned int)));
+		return (ft_itoa_printu(va_arg(vargs, unsigned int)));
+	else if (type == 'x')
+		return (ft_itoa_printx(va_arg(vargs, unsigned int)));
+	else if (type == 'X')
+		return (ft_itoa_printxm(va_arg(vargs, unsigned int)));
+	else if (type == 'p')
+		return (ft_itoa_printptr(va_arg(vargs, void *)));
 	return (0);
 }
 
-int ft_printf(char const *str, ...)
+int	ft_printf(char const *str, ...)
 {
 	va_list	vargs;
 	int		i;
@@ -59,10 +65,11 @@ int ft_printf(char const *str, ...)
 }
 /*
 int	main(void)
-{ 
-	char *ptr;
-	int ptrlong = (int)ptr;
-	printf("%p\n", ptr);
-	printf("%dx", ptrlong);
+{
+	void *num;
+	int result = ft_printf("%p\n", num);
+	ft_printf("Mio result: %d\n", result);
+	result = printf("%p\n", num);
+	printf("result: %d\n", result);
 }
 */

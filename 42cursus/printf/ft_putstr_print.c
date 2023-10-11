@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_putstr_print.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/08 13:02:15 by acandela          #+#    #+#             */
-/*   Updated: 2023/10/11 18:54:55 by acandela         ###   ########.fr       */
+/*   Created: 2023/10/10 17:13:07 by acandela          #+#    #+#             */
+/*   Updated: 2023/10/11 18:14:53 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
-# include "libftprintf.h"
-# include <stdlib.h>
+#include "libftprintf.h"
+#include <unistd.h>
 
-int	ft_printf(char const *str, ...);
-int	ft_itoa_print(int n);
-int	ft_itoa_printu(int n);
-int	ft_itoa_printx(int n);
-int	ft_itoa_printxm(int n);
-int	ft_itoa_printptr(void *ptr);
-int	ft_putchar_print(char c);
-int	ft_putstr_print(char *s);
+int	ft_putstr_print(char *s)
+{
+	int	i;
 
-#endif
+	i = 0;
+	while (s[i] != '\0')
+	{
+		write(1, &s[i], 1);
+		i++;
+	}
+	return (i);
+}
