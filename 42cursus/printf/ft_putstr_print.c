@@ -6,7 +6,7 @@
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 17:13:07 by acandela          #+#    #+#             */
-/*   Updated: 2023/10/11 18:14:53 by acandela         ###   ########.fr       */
+/*   Updated: 2023/10/14 11:57:31 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@ int	ft_putstr_print(char *s)
 {
 	int	i;
 
+	if (s == NULL)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
 	i = 0;
 	while (s[i] != '\0')
 	{

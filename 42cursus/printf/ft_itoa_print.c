@@ -6,7 +6,7 @@
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 17:44:33 by acandela          #+#    #+#             */
-/*   Updated: 2023/10/11 18:15:09 by acandela         ###   ########.fr       */
+/*   Updated: 2023/10/14 13:27:27 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	ft_itoa_print(int n)
 	int		sign;
 	char	*itoa;
 	long	cast;
+	int		result;
 
 	cast = (long)n;
 	sign = 0;
@@ -67,5 +68,7 @@ int	ft_itoa_print(int n)
 	if (itoa == NULL)
 		return (ft_putstr_print(NULL));
 	itoa = ft_isitoa(itoa, size, cast, sign);
-	return (ft_putstr_print(itoa));
+	result = ft_putstr_print(itoa);
+	free(itoa);
+	return (result);
 }

@@ -6,7 +6,7 @@
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 17:44:33 by acandela          #+#    #+#             */
-/*   Updated: 2023/10/11 18:27:41 by acandela         ###   ########.fr       */
+/*   Updated: 2023/10/14 13:28:02 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,16 @@ static int	ft_itoa_cnt_long(long n)
 {
 	int		size;
 	char	*itoa;
+	int		result;
 
 	size = ft_countdigits(n);
 	itoa = malloc(size + 1);
 	if (itoa == NULL)
 		return (ft_putstr_print(NULL));
 	itoa = ft_isitoa(itoa, size, n);
-	return (ft_putstr_print(itoa));
+	result = ft_putstr_print(itoa);
+	free(itoa);
+	return (result);
 }
 
 int	ft_itoa_printx(int n)

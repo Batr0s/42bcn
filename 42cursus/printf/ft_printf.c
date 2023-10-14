@@ -6,7 +6,7 @@
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:52:32 by acandela          #+#    #+#             */
-/*   Updated: 2023/10/11 19:04:11 by acandela         ###   ########.fr       */
+/*   Updated: 2023/10/14 13:51:46 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ static int	ft_printarg(va_list vargs, char type)
 		return (ft_putchar_print('%'));
 	else if (type == 's')
 		return (ft_putstr_print(va_arg(vargs, char *)));
+	else if (type == 'p')
+		return (ft_itoa_printptr(va_arg(vargs, void *)));
 	else if (type == 'd' || type == 'i')
 		return (ft_itoa_print(va_arg(vargs, int)));
 	else if (type == 'u')
@@ -31,8 +33,6 @@ static int	ft_printarg(va_list vargs, char type)
 		return (ft_itoa_printx(va_arg(vargs, unsigned int)));
 	else if (type == 'X')
 		return (ft_itoa_printxm(va_arg(vargs, unsigned int)));
-	else if (type == 'p')
-		return (ft_itoa_printptr(va_arg(vargs, void *)));
 	return (0);
 }
 
@@ -66,10 +66,12 @@ int	ft_printf(char const *str, ...)
 /*
 int	main(void)
 {
-	void *num;
-	int result = ft_printf("%p\n", num);
-	ft_printf("Mio result: %d\n", result);
-	result = printf("%p\n", num);
-	printf("result: %d\n", result);
+	int	result;
+	void *ptr;
+
+	result = printf("%p\n", (void *)-14523);
+	printf("%d\n", result);
+	result = ft_printf("%p\n", (void *)-14523);
+	printf("%d\n", result);
 }
 */
