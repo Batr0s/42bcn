@@ -6,7 +6,7 @@
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 13:02:15 by acandela          #+#    #+#             */
-/*   Updated: 2023/10/11 18:54:55 by acandela         ###   ########.fr       */
+/*   Updated: 2023/10/15 13:09:32 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ int	ft_itoa_printxm(int n);
 int	ft_itoa_printptr(void *ptr);
 int	ft_putchar_print(char c);
 int	ft_putstr_print(char *s);
+int	ft_putstr_s(char *s);
 
 #endif

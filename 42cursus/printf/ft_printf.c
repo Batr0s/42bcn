@@ -6,7 +6,7 @@
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:52:32 by acandela          #+#    #+#             */
-/*   Updated: 2023/10/14 13:51:46 by acandela         ###   ########.fr       */
+/*   Updated: 2023/10/15 13:10:07 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	ft_printarg(va_list vargs, char type)
 	else if (type == '%')
 		return (ft_putchar_print('%'));
 	else if (type == 's')
-		return (ft_putstr_print(va_arg(vargs, char *)));
+		return (ft_putstr_s(va_arg(vargs, char *)));
 	else if (type == 'p')
 		return (ft_itoa_printptr(va_arg(vargs, void *)));
 	else if (type == 'd' || type == 'i')
@@ -39,26 +39,27 @@ static int	ft_printarg(va_list vargs, char type)
 int	ft_printf(char const *str, ...)
 {
 	va_list	vargs;
-	int		i;
-	int		type;
 	int		size;
+	int		prot;
 
-	i = 0;
 	size = 0;
 	va_start(vargs, str);
-	while (str[i] != '\0')
+	while (*str != '\0')
 	{
-		if (str[i] == '%')
+		if (*str == '%')
 		{
-			type = str[++i];
-			size += ft_printarg(vargs, type);
+			prot = ft_printarg(vargs, *(++str));
+			if (prot == -1)
+				return (-1);
+			size += prot;
 		}
 		else
 		{
 			size++;
-			write(1, &str[i], 1);
+			if (write(1, &*str, 1) == -1)
+				return (-1);
 		}
-		i++;
+		str++;
 	}
 	va_end(vargs);
 	return (size);
@@ -66,12 +67,9 @@ int	ft_printf(char const *str, ...)
 /*
 int	main(void)
 {
-	int	result;
-	void *ptr;
-
-	result = printf("%p\n", (void *)-14523);
-	printf("%d\n", result);
-	result = ft_printf("%p\n", (void *)-14523);
-	printf("%d\n", result);
+	int result;
+	
+	result = ft_printf("%s", (char *)NULL);
+	printf("\n%d\n", result); 
 }
 */
