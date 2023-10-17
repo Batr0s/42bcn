@@ -6,14 +6,12 @@
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:52:32 by acandela          #+#    #+#             */
-/*   Updated: 2023/10/15 13:10:07 by acandela         ###   ########.fr       */
+/*   Updated: 2023/10/17 12:07:43 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 #include <stdarg.h>
-#include <stdio.h>
-#include <unistd.h>
 
 static int	ft_printarg(va_list vargs, char type)
 {
@@ -40,7 +38,7 @@ int	ft_printf(char const *str, ...)
 {
 	va_list	vargs;
 	int		size;
-	int		prot;
+	int		numchar;
 
 	size = 0;
 	va_start(vargs, str);
@@ -48,15 +46,15 @@ int	ft_printf(char const *str, ...)
 	{
 		if (*str == '%')
 		{
-			prot = ft_printarg(vargs, *(++str));
-			if (prot == -1)
+			numchar = ft_printarg(vargs, *(++str));
+			if (numchar == -1)
 				return (-1);
-			size += prot;
+			size += numchar;
 		}
 		else
 		{
 			size++;
-			if (write(1, &*str, 1) == -1)
+			if (ft_putchar_print(*str) == -1)
 				return (-1);
 		}
 		str++;
@@ -64,12 +62,12 @@ int	ft_printf(char const *str, ...)
 	va_end(vargs);
 	return (size);
 }
-/*
+
+#include <stdio.h>
 int	main(void)
 {
-	int result;
+	int result = 0;
 	
-	result = ft_printf("%s", (char *)NULL);
-	printf("\n%d\n", result); 
+	//result = printf("%p", NULL);
+	printf("\n%x\n", result); 
 }
-*/

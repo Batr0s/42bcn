@@ -6,17 +6,12 @@
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 17:44:33 by acandela          #+#    #+#             */
-/*   Updated: 2023/10/14 13:20:08 by acandela         ###   ########.fr       */
+/*   Updated: 2023/10/17 11:39:59 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-#include <stdio.h>
 
-/*
-itoa function recieves an int and creates a string with the digits of that int
-it can manage negative numbers and the max and min number of the int variable.
-*/
 static int	ft_countdigits(long n)
 {
 	int	digits;
@@ -76,6 +71,7 @@ int	ft_itoa_printu(int n)
 	return (ft_itoa_cnt_long(cast));
 }
 /*
+#include <stdio.h>
 int	main(void)
 {
 	int	n;

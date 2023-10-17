@@ -15,7 +15,6 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	ar rc $(NAME) $(OBJ)
-	ranlib	$(NAME)
 
 %.o : %.c  $(INC) Makefile
 	$(CC) $(CFLAGS) -c $< -o $@
