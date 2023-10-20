@@ -6,7 +6,7 @@
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 16:49:58 by acandela          #+#    #+#             */
-/*   Updated: 2023/10/19 16:12:13 by acandela         ###   ########.fr       */
+/*   Updated: 2023/10/20 13:02:29 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,9 @@ char	*ft_strdup(const char *s1)
 
 char	*ft_strchr(const char *s, int c)
 {
-    char *str;
+	char	*str;
 
-    str = (char *)s;
-    
+	str = (char *)s;
 	while (*str != 0)
 	{
 		if (*str == (char)c)
@@ -115,4 +114,3 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	ft_strlcat(str, (char *)s2, strlen + 1);
 	return (str);
 }
-
