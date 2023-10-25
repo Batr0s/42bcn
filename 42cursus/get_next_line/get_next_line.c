@@ -109,11 +109,11 @@ int	main(void)
 	char	*buffer;
 
 	fd = open("archivo.txt", O_RDONLY);
-	if (fd == -1)
-		perror("Error al abrir el archivo");
+	//if (fd == -1)
+	//	perror("Error al abrir el archivo");
 	printf("%s", get_next_line(fd));
-	//printf("%s", get_next_line(fd));
-	// printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
 	// printf("%s", get_next_line(fd));
 	
 }

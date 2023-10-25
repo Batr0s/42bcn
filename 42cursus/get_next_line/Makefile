@@ -1,14 +1,13 @@
 NAME = get_next_line.a
 
-SRC = \
-get_next_line.c get_next_line_utils.c 
+SRC = get_next_line.c get_next_line_utils.c 
 
 OBJ = $(SRC:.c=.o)
 
-INC = get_next_line.h
+INC = -I./
 
-CC = cc
-CFLAGS = -Werror -Wextra -Wall -I $(INC)
+CC = gcc
+CFLAGS = -Werror -Wextra -Wall $(INC)
 
 all: $(NAME)
 
