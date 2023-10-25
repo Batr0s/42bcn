@@ -47,12 +47,12 @@ static char	*ft_clean_line(char *next_line)
 	j = 0;
 	while (next_line[i] != '\n' && next_line[i] != '\0')
 		i++;
-	if (next_line[i] == '\0')
+	new = malloc(sizeof(char) * (ft_strlen(next_line) - i + 1));
+	if (next_line[i] == '\0' || new == NULL)
 	{
 		free(next_line);
 		return (NULL);
 	}
-	new = malloc(sizeof(char) * (ft_strlen(next_line) - i + 1));
 	i++;
 	while (next_line[i] != '\0')
 		new[j++] = next_line[i++];
@@ -89,14 +89,14 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-/*
+
 int	main(void)
 {
 	// stdin
-	// char *line;
-
+ 	// char *line;
     // printf("Ingresa líneas de texto (Presiona Ctrl+D para finalizar):\n");
-    // while ((line = get_next_line(0)) != NULL)
+    
+	// while ((line = get_next_line(0)) != NULL)
     // {
     //     printf("Línea leída: %s\n", line);
     //     free(line);
@@ -106,15 +106,15 @@ int	main(void)
 	
 	
 	int		fd;
-	char	*buffer;
 
+	printf("Valor BUFFER: %d\n", BUFFER_SIZE);
 	fd = open("archivo.txt", O_RDONLY);
-	//if (fd == -1)
-	//	perror("Error al abrir el archivo");
+	if (fd == -1)
+		perror("Error al abrir el archivo");
+	char *result;
+	result = get_next_line(fd);
+	printf("%s", result);
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	// printf("%s", get_next_line(fd));
-	
+	printf("%s", get_next_line(fd));	
 }
-*/

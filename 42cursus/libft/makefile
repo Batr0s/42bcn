@@ -12,8 +12,8 @@ ft_putnbr.c ft_putstr.c\
 # replaces the .c extension with .o creating a list of object file names
 OBJ = $(SRC:.c=.o)
 CC = cc
-INC = libft.h
-CFLAGS = -Werror -Wextra -Wall -I $(INC)
+INC = -I./
+CFLAGS = -Werror -Wextra -Wall $(INC)
 
 all: $(NAME)
 
