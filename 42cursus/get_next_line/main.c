@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/18 11:34:31 by acandela          #+#    #+#             */
-/*   Updated: 2023/10/26 18:32:37 by acandela         ###   ########.fr       */
+/*   Created: 2023/10/26 12:24:53 by acandela          #+#    #+#             */
+/*   Updated: 2023/10/26 18:31:45 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "get_next_line.h"
+#include <stdio.h>
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
-# endif
+int	main(void)
+{
+	int fd;
 
-# include <fcntl.h>
-# include <stdlib.h>
-# include <unistd.h>
-
-char	*ft_strchr(const char *s, int c);
-char	*ft_strdup(const char *s1);
-int		ft_strlen(const char *s);
-char	*ft_strjoin(char *s1, char *s2);
-char	*get_next_line(int fd);
-
-#endif
+	printf("Valor BUFFER: %d\n", BUFFER_SIZE);
+	fd = open("archivo.txt", O_RDONLY);
+	if (fd == -1)
+		perror("Error al abrir el archivo");
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	// printf("%s", get_next_line(fd));
+	// printf("%s", get_next_line(fd));
+}

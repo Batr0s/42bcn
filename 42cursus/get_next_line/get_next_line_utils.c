@@ -6,7 +6,7 @@
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 16:49:58 by acandela          #+#    #+#             */
-/*   Updated: 2023/10/20 13:02:29 by acandela         ###   ########.fr       */
+/*   Updated: 2023/10/26 18:45:46 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,24 +64,6 @@ int	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strdup(const char *s1)
-{
-	char	*s2;
-	int		i;
-
-	s2 = malloc(ft_strlen(s1) + 1);
-	if (s2 == NULL)
-		return (NULL);
-	i = 0;
-	while (s1[i])
-	{
-		s2[i] = s1[i];
-		i++;
-	}
-	s2[i] = '\0';
-	return (s2);
-}
-
 char	*ft_strchr(const char *s, int c)
 {
 	char	*str;
@@ -96,21 +78,32 @@ char	*ft_strchr(const char *s, int c)
 	if ((*str == '\0') && ((char)c == '\0'))
 		return ((char *)str);
 	else
-		return (0);
+		return (NULL);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *next_line, char *buffer)
 {
 	size_t	strlen;
-	char	*str;
+	char	*join_line;
 
-	if (s1 == NULL || s2 == NULL)
+	if (buffer == NULL)
 		return (NULL);
-	strlen = ft_strlen(s1) + ft_strlen(s2);
-	str = malloc(strlen + 1);
-	if (str == NULL)
+	if (next_line == NULL)
+	{
+		next_line = malloc(sizeof(char *) * 1);
+		if (next_line == NULL)
+			return (NULL);
+		next_line[0] = '\0';
+	}
+	strlen = ft_strlen(next_line) + ft_strlen(buffer);
+	join_line = malloc(strlen + 1);
+	if (join_line == NULL)
+	{
+		free(next_line);
 		return (NULL);
-	ft_strlcpy(str, (char *)s1, ft_strlen(s1) + 1);
-	ft_strlcat(str, (char *)s2, strlen + 1);
-	return (str);
+	}
+	ft_strlcpy(join_line, next_line, ft_strlen(next_line) + 1);
+	ft_strlcat(join_line, buffer, strlen + 1);
+	free(next_line);
+	return (join_line);
 }
