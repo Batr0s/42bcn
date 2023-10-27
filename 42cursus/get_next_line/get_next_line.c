@@ -6,7 +6,7 @@
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:09:06 by acandela          #+#    #+#             */
-/*   Updated: 2023/10/26 19:02:17 by acandela         ###   ########.fr       */
+/*   Updated: 2023/10/27 13:16:58 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,31 +20,7 @@ char	*ft_free(char *str)
 	return (NULL);
 }
 
-static char	*ft_salto(char *next_line)
-{
-	char	*salto;
-	int		i;
-
-	i = 0;
-	while (next_line[i] != '\0' && next_line[i] != '\n')
-		i++;
-	salto = malloc(sizeof(char) * (i + 2));
-	i = 0;
-	while (next_line[i] != '\0' && next_line[i] != '\n')
-	{
-		salto[i] = next_line[i];
-		i++;
-	}
-	if (next_line[i] == '\n')
-	{
-		salto[i] = '\n';
-		i++;
-	}
-	salto[i] = '\0';
-	return (salto);
-}
-
-static char	*ft_clean_line(char *next_line)
+static char	*ft_clean_line(char *text_storage)
 {
 	char	*new;
 	int		i;
@@ -52,50 +28,87 @@ static char	*ft_clean_line(char *next_line)
 
 	i = 0;
 	j = 0;
-	while (next_line[i] != '\n' && next_line[i] != '\0')
+	while (text_storage[i] != '\n' && text_storage[i] != '\0')
 		i++;
-	new = malloc(sizeof(char) * (ft_strlen(next_line) - i + 1));
-	if (next_line[i] == '\0' || new == NULL)
+	new = malloc(sizeof(char) * (ft_strlen(text_storage) - i + 1));
+	if (text_storage[i] == '\0' || new == NULL)
 	{
-		free(next_line);
+		free(text_storage);
 		return (ft_free(new));
 	}
 	i++;
-	while (next_line[i] != '\0')
-		new[j++] = next_line[i++];
+	while (text_storage[i] != '\0')
+		new[j++] = text_storage[i++];
 	new[j] = '\0';
-	ft_free(next_line);
+	ft_free(text_storage);
 	return (new);
 }
-char	*get_next_line(int fd)
-{
-	static char	*next_line = NULL;
-	char		*line;
-	char		*buffer;
-	int			bytes_read;
 
-	if (fd < 0 || read(fd, &next_line, 0) < 0 || BUFFER_SIZE <= 0)
+static char	*ft_line_return(char *text_storage)
+{
+	char	*line_return;
+	int		i;
+	int		extra;
+
+	extra = 1;
+	i = 0;
+	while (text_storage[i] != '\0' && text_storage[i] != '\n')
+		i++;
+	if (text_storage[i] == '\n')
+		extra = 2;
+	line_return = malloc(sizeof(char) * (i + extra));
+	if (line_return == NULL)
 		return (NULL);
+	i = 0;
+	while (text_storage[i] != '\0' && text_storage[i] != '\n')
+	{
+		line_return[i] = text_storage[i];
+		i++;
+	}
+	if (text_storage[i] == '\n')
+		line_return[i++] = '\n';
+	line_return[i] = '\0';
+	return (line_return);
+}
+
+char	*ft_read_buff(char *text_storage, int fd)
+{
+	char	*buffer;
+	int		bytes_read;
+
 	buffer = malloc(BUFFER_SIZE + 1);
 	if (buffer == NULL)
-		return (ft_free(next_line));
-		
-	bytes_read = read(fd, buffer, BUFFER_SIZE);
-	buffer[bytes_read] = '\0';
-	if (next_line == NULL && bytes_read == 0)
-		return (ft_free(buffer));
-	while (bytes_read > 0)
+		return (NULL);
+	bytes_read = 1;
+	buffer[0] = '\0';
+	while (bytes_read > 0 && !ft_strchr(buffer, '\n'))
 	{
-		next_line = ft_strjoin(next_line, buffer);
-		if (ft_strchr(buffer, '\n') != NULL)
-			break ;
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
-		buffer[bytes_read] = '\0';
+		if (bytes_read > 0)
+		{
+			buffer[bytes_read] = '\0';
+			text_storage = ft_strjoin(text_storage, buffer);
+		}
 	}
 	ft_free(buffer);
 	if (bytes_read == -1)
-		return (ft_free(next_line));
-	line = ft_salto(next_line);
-	next_line = ft_clean_line(next_line);
-	return (line);
+		return (ft_free(text_storage));
+	if (text_storage != NULL && text_storage[0] == '\0')
+		return (ft_free(text_storage));
+	return (text_storage);
+}
+
+char	*get_next_line(int fd)
+{
+	static char	*text_storage = NULL;
+	char		*line_return;
+
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	text_storage = ft_read_buff(text_storage, fd);
+	if (text_storage == NULL)
+		return (NULL);
+	line_return = ft_line_return(text_storage);
+	text_storage = ft_clean_line(text_storage);
+	return (line_return);
 }
