@@ -6,16 +6,16 @@
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 16:49:58 by acandela          #+#    #+#             */
-/*   Updated: 2023/10/26 18:45:46 by acandela         ###   ########.fr       */
+/*   Updated: 2023/11/01 13:52:31 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static size_t	ft_strlcpy(char *dest, const char *src, size_t dstsize)
+static int	ft_strlcpy(char *dest, char *src, int dstsize)
 {
-	int		i;
-	size_t	j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -32,14 +32,15 @@ static size_t	ft_strlcpy(char *dest, const char *src, size_t dstsize)
 	return (i);
 }
 
-static size_t	ft_strlcat(char *dest, char *src, size_t dstsize)
+static int	ft_strlcat(char *dest, char *src, int dstsize)
 {
-	int		i;
-	size_t	lensrc;
-	size_t	lendest;
-	size_t	result;
+	int	i;
+	int	lensrc;
+	int	lendest;
+	int	result;
 
-	lensrc = ft_strlen(src);
+	if (dest == NULL || src == NULL)
+		lensrc = ft_strlen(src);
 	lendest = ft_strlen(dest);
 	i = 0;
 	if (dstsize < lendest)
@@ -52,7 +53,7 @@ static size_t	ft_strlcat(char *dest, char *src, size_t dstsize)
 	return (result);
 }
 
-int	ft_strlen(const char *s)
+int	ft_strlen(char *s)
 {
 	int	i;
 
@@ -64,10 +65,12 @@ int	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr(char *s, int c)
 {
 	char	*str;
 
+	if (s == NULL)
+		return (NULL);
 	str = (char *)s;
 	while (*str != 0)
 	{
@@ -83,7 +86,7 @@ char	*ft_strchr(const char *s, int c)
 
 char	*ft_strjoin(char *next_line, char *buffer)
 {
-	size_t	strlen;
+	int		strlen;
 	char	*join_line;
 
 	if (buffer == NULL)

@@ -6,7 +6,7 @@
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:34:31 by acandela          #+#    #+#             */
-/*   Updated: 2023/10/26 18:32:37 by acandela         ###   ########.fr       */
+/*   Updated: 2023/11/01 13:49:14 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-char	*ft_strchr(const char *s, int c);
-char	*ft_strdup(const char *s1);
-int		ft_strlen(const char *s);
+char	*ft_strchr(char *s, int c);
+char	*ft_strdup(char *s1);
+int		ft_strlen(char *s);
 char	*ft_strjoin(char *s1, char *s2);
 char	*get_next_line(int fd);
 
