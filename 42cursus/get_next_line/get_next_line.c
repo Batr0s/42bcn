@@ -6,7 +6,7 @@
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:09:06 by acandela          #+#    #+#             */
-/*   Updated: 2023/10/27 13:16:58 by acandela         ###   ########.fr       */
+/*   Updated: 2023/11/01 13:03:24 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,11 @@ static char	*ft_clean_line(char *text_storage)
 	j = 0;
 	while (text_storage[i] != '\n' && text_storage[i] != '\0')
 		i++;
+	if (text_storage[i] == '\0' || text_storage[i + 1] == '\0')
+		return (ft_free(text_storage));
 	new = malloc(sizeof(char) * (ft_strlen(text_storage) - i + 1));
-	if (text_storage[i] == '\0' || new == NULL)
-	{
-		free(text_storage);
-		return (ft_free(new));
-	}
+	if (new == NULL)
+		return (NULL);
 	i++;
 	while (text_storage[i] != '\0')
 		new[j++] = text_storage[i++];
@@ -92,8 +91,6 @@ char	*ft_read_buff(char *text_storage, int fd)
 	}
 	ft_free(buffer);
 	if (bytes_read == -1)
-		return (ft_free(text_storage));
-	if (text_storage != NULL && text_storage[0] == '\0')
 		return (ft_free(text_storage));
 	return (text_storage);
 }
