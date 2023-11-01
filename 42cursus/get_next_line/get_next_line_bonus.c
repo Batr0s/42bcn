@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:09:06 by acandela          #+#    #+#             */
-/*   Updated: 2023/11/01 18:26:03 by acandela         ###   ########.fr       */
+/*   Updated: 2023/11/01 18:28:06 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 #include <stdio.h>
 
 static char	*ft_free(char *str)
@@ -70,7 +70,7 @@ static char	*ft_line_return(char *text_storage)
 	return (line_return);
 }
 
-static char	*ft_read_buff(char *text_storage, int fd)
+char	*ft_read_buff(char *text_storage, int fd)
 {
 	char	*buffer;
 	int		bytes_read;
@@ -97,15 +97,15 @@ static char	*ft_read_buff(char *text_storage, int fd)
 
 char	*get_next_line(int fd)
 {
-	static char	*text_storage = NULL;
+	static char	*text_storage[50];
 	char		*line_return;
-
+	
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	text_storage = ft_read_buff(text_storage, fd);
-	if (text_storage == NULL)
+	text_storage[fd] = ft_read_buff(text_storage[fd], fd);
+	if (text_storage[fd] == NULL)
 		return (NULL);
-	line_return = ft_line_return(text_storage);
-	text_storage = ft_clean_line(text_storage);
+	line_return = ft_line_return(text_storage[fd]);
+	text_storage[fd] = ft_clean_line(text_storage[fd]);
 	return (line_return);
 }
