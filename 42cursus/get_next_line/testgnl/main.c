@@ -6,13 +6,14 @@
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 12:24:53 by acandela          #+#    #+#             */
-/*   Updated: 2023/11/01 18:30:55 by acandela         ###   ########.fr       */
+/*   Updated: 2023/11/02 16:32:11 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // #include "get_next_line.h"
 #include "get_next_line_bonus.h"
 #include <stdio.h>
+#include <fcntl.h>
 
 int	main(void)
 {

@@ -1,0 +1,3 @@
+Se considera que get_next_line() tiene un comportamiento indeterminado si el
+archivo al que apunta el fd ha cambiado desde la última vez que se llamó, siempre
+que read() no haya llegado al final del archivo.

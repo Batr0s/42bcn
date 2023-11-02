@@ -6,11 +6,12 @@
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 16:49:58 by acandela          #+#    #+#             */
-/*   Updated: 2023/11/01 13:52:31 by acandela         ###   ########.fr       */
+/*   Updated: 2023/11/02 11:34:13 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include "stdio.h"
 
 static int	ft_strlcpy(char *dest, char *src, int dstsize)
 {
@@ -108,5 +109,6 @@ char	*ft_strjoin(char *next_line, char *buffer)
 	ft_strlcpy(join_line, next_line, ft_strlen(next_line) + 1);
 	ft_strlcat(join_line, buffer, strlen + 1);
 	free(next_line);
+	next_line = NULL;
 	return (join_line);
 }

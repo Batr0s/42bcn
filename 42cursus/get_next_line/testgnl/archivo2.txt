@@ -1,0 +1,4 @@
+Prohibido
+• No se permite la utilización de tu libft en este proyecto.
+• Se prohibe la utilización de lseek
+• Se prohibe la utilización de variables globales.
