@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/02 18:03:24 by acandela          #+#    #+#             */
-/*   Updated: 2023/10/04 13:21:48 by acandela         ###   ########.fr       */
+/*   Created: 2023/11/08 17:57:19 by acandela          #+#    #+#             */
+/*   Updated: 2023/11/09 13:09:51 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <unistd.h>
+#include <stdio.h>
 
-void	ft_putstr_fd(char *s, int fd)
+void ft_lstnew(void)
 {
-	int	i;
+	printf("hola");
+}
 
-	i = 0;
-	while (s[i] != 0)
-	{
-		write(fd, &s[i], 1);
-		i++;
-	}
-}
-/*
-int	main(void)
-{
-	char str[] = "hola";
-	ft_putstr_fd(str, 1);
-}
-*/
+// int main(void)
+// {
+// 	if (ft_isalpha(99))
+// 		printf("Es alpha\n");
+// }
+
