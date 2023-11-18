@@ -6,7 +6,7 @@
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 17:34:41 by acandela          #+#    #+#             */
-/*   Updated: 2023/11/17 18:25:46 by acandela         ###   ########.fr       */
+/*   Updated: 2023/11/18 16:24:01 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	if (lst == NULL || new == NULL)
-		return ;
 	new->next = lst[0];
 	lst[0] = new;
 }

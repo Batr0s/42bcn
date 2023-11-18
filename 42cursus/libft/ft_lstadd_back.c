@@ -6,7 +6,7 @@
 /*   By: acandela <acandela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:43:19 by acandela          #+#    #+#             */
-/*   Updated: 2023/11/17 19:06:55 by acandela         ###   ########.fr       */
+/*   Updated: 2023/11/18 16:25:24 by acandela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,18 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 {
 	t_list	*node;
 
-	if (lst != NULL)
+	if (lst[0] == NULL)
 	{
-		if (lst[0] == NULL)
+		lst[0] = new;
+	}
+	else
+	{
+		node = lst[0];
+		while (node->next)
 		{
-			lst[0] = new;
+			node = node->next;
 		}
-		else
-		{
-			node = lst[0];
-			while (node->next)
-			{
-				node = node->next;
-			}
-			node->next = new;
-		}
+		node->next = new;
 	}
 }
 /*
